@@ -1,0 +1,3 @@
+*.suo
+/PriceWatcher/PriceWatcher/obj/Debug
+/PriceWatcher/PriceWatcher.Tests/obj/Debug
