@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceWatcher", "PriceWatche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceWatcher.Tests", "PriceWatcher.Tests\PriceWatcher.Tests.csproj", "{815C5A4A-02B7-4E05-BDB3-16E636557EAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceWatcher.DAL", "PriceWatcher.DAL\PriceWatcher.DAL.csproj", "{1660AC39-9BE4-45B2-9DF7-762E878A77B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{815C5A4A-02B7-4E05-BDB3-16E636557EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{815C5A4A-02B7-4E05-BDB3-16E636557EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{815C5A4A-02B7-4E05-BDB3-16E636557EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1660AC39-9BE4-45B2-9DF7-762E878A77B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1660AC39-9BE4-45B2-9DF7-762E878A77B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1660AC39-9BE4-45B2-9DF7-762E878A77B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1660AC39-9BE4-45B2-9DF7-762E878A77B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
