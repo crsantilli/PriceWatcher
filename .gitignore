@@ -1,3 +1,6 @@
 *.suo
 /PriceWatcher/PriceWatcher/obj/Debug
 /PriceWatcher/PriceWatcher.Tests/obj/Debug
+/PriceWatcher/PriceWatcher.Tests/bin/Debug
+/PriceWatcher/PriceWatcher.DAL/bin/Debug
+/PriceWatcher/PriceWatcher.DAL/obj/Debug
