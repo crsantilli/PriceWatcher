@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PriceWatcher.DAL.DTOs;
+using PriceWatcher.DAL.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,6 +30,11 @@ namespace PriceWatcher.Controllers
             countries.Add(new Country() { name = "New York", data = new List<decimal> { -0.2m, 0.8m, 5.7m, 11.3m, 17.0m, 22.0m, 24.8m, 24.1m, 20.1m, 14.1m, 8.6m, 2.5m } });
             countries.Add(new Country() { name = "Berlin", data = new List<decimal> { -0.9m, 0.6m, 3.5m, 8.4m, 13.5m, 17.0m, 18.6m, 17.9m, 14.3m, 9.0m, 3.9m, 1.0m } });
             countries.Add(new Country() { name = "London", data = new List<decimal> { 3.9m, 4.2m, 5.7m, 8.5m, 11.9m, 15.2m, 17.0m, 16.6m, 14.2m, 10.3m, 6.6m, 4.8m} });
+
+            PriceService.Instance.UpdatePrices();           
+
+            List<ProductDTO> products = ProductService.Instance.GetAll();
+
 
             return Json(new { countries = countries }, JsonRequestBehavior.AllowGet);
         }

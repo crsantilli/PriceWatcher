@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PriceWatcherModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Git\PriceWatcher\PriceWatcher\PriceWatcher\Databases\PriceWatcher.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductRetailerID" Type="integer" />
+          <Property Name="Value" Type="real" Nullable="false" />
+          <Property Name="Timestamp" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="ProductRetailer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="integer" />
+          <Property Name="RetailerID" Type="integer" />
+          <Property Name="UrlTail" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Retailer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Url" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <Association Name="FK_Price_0_0">
+          <End Role="ProductRetailer" Type="Self.ProductRetailer" Multiplicity="0..1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductRetailer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="ProductRetailerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRetailer_0_0">
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="0..1" />
+          <End Role="ProductRetailer" Type="Self.ProductRetailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductRetailer">
+              <PropertyRef Name="RetailerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRetailer_1_0">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductRetailer" Type="Self.ProductRetailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductRetailer">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PriceWatcherModelStoreContainer">
+          <EntitySet Name="Price" EntityType="Self.Price" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" store:Type="Tables" />
+          <EntitySet Name="ProductRetailer" EntityType="Self.ProductRetailer" store:Type="Tables" />
+          <EntitySet Name="Retailer" EntityType="Self.Retailer" store:Type="Tables" />
+          <AssociationSet Name="FK_Price_0_0" Association="Self.FK_Price_0_0">
+            <End Role="ProductRetailer" EntitySet="ProductRetailer" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRetailer_0_0" Association="Self.FK_ProductRetailer_0_0">
+            <End Role="Retailer" EntitySet="Retailer" />
+            <End Role="ProductRetailer" EntitySet="ProductRetailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRetailer_1_0" Association="Self.FK_ProductRetailer_1_0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductRetailer" EntitySet="ProductRetailer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PriceWatcherModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PriceWatcherEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prices" EntityType="PriceWatcherModel.Price" />
+          <EntitySet Name="Products" EntityType="PriceWatcherModel.Product" />
+          <EntitySet Name="ProductRetailers" EntityType="PriceWatcherModel.ProductRetailer" />
+          <EntitySet Name="Retailers" EntityType="PriceWatcherModel.Retailer" />
+          <AssociationSet Name="FK_Price_0_0" Association="PriceWatcherModel.FK_Price_0_0">
+            <End Role="ProductRetailer" EntitySet="ProductRetailers" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRetailer_1_0" Association="PriceWatcherModel.FK_ProductRetailer_1_0">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductRetailer" EntitySet="ProductRetailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRetailer_0_0" Association="PriceWatcherModel.FK_ProductRetailer_0_0">
+            <End Role="Retailer" EntitySet="Retailers" />
+            <End Role="ProductRetailer" EntitySet="ProductRetailers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductRetailerID" Type="Int64" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="Timestamp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductRetailer" Relationship="PriceWatcherModel.FK_Price_0_0" FromRole="Price" ToRole="ProductRetailer" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductRetailers" Relationship="PriceWatcherModel.FK_ProductRetailer_1_0" FromRole="Product" ToRole="ProductRetailer" />
+        </EntityType>
+        <EntityType Name="ProductRetailer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="RetailerID" Type="Int64" />
+          <Property Name="UrlTail" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prices" Relationship="PriceWatcherModel.FK_Price_0_0" FromRole="ProductRetailer" ToRole="Price" />
+          <NavigationProperty Name="Product" Relationship="PriceWatcherModel.FK_ProductRetailer_1_0" FromRole="ProductRetailer" ToRole="Product" />
+          <NavigationProperty Name="Retailer" Relationship="PriceWatcherModel.FK_ProductRetailer_0_0" FromRole="ProductRetailer" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="Retailer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductRetailers" Relationship="PriceWatcherModel.FK_ProductRetailer_0_0" FromRole="Retailer" ToRole="ProductRetailer" />
+        </EntityType>
+        <Association Name="FK_Price_0_0">
+          <End Type="PriceWatcherModel.ProductRetailer" Role="ProductRetailer" Multiplicity="0..1" />
+          <End Type="PriceWatcherModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductRetailer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="ProductRetailerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRetailer_1_0">
+          <End Type="PriceWatcherModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="PriceWatcherModel.ProductRetailer" Role="ProductRetailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductRetailer">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRetailer_0_0">
+          <End Type="PriceWatcherModel.Retailer" Role="Retailer" Multiplicity="0..1" />
+          <End Type="PriceWatcherModel.ProductRetailer" Role="ProductRetailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductRetailer">
+              <PropertyRef Name="RetailerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PriceWatcherModelStoreContainer" CdmEntityContainer="PriceWatcherEntities">
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="PriceWatcherModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ProductRetailerID" ColumnName="ProductRetailerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PriceWatcherModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductRetailers">
+            <EntityTypeMapping TypeName="PriceWatcherModel.ProductRetailer">
+              <MappingFragment StoreEntitySet="ProductRetailer">
+                <ScalarProperty Name="UrlTail" ColumnName="UrlTail" />
+                <ScalarProperty Name="RetailerID" ColumnName="RetailerID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Retailers">
+            <EntityTypeMapping TypeName="PriceWatcherModel.Retailer">
+              <MappingFragment StoreEntitySet="Retailer">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -46,7 +46,7 @@
 
                 
             }, function errorCallback(response) {
-                alert("Sorry, something went wrong!");
+                console.log("Sorry, something went wrong!");
             });            
         }
     }
