@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="07466ede8a214b7281d198c59af03c79" Name="Diagram1">
-        <EntityTypeShape EntityType="PriceWatcherModel.Price" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="PriceWatcherModel.Price" Width="1.5" PointX="5.25" PointY="1.25" />
         <EntityTypeShape EntityType="PriceWatcherModel.Product" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="PriceWatcherModel.ProductRetailer" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="PriceWatcherModel.Retailer" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="PriceWatcherModel.Retailer" Width="1.5" PointX="0.75" PointY="5.375" />
         <AssociationConnector Association="PriceWatcherModel.FK_Price_0_0" />
         <AssociationConnector Association="PriceWatcherModel.FK_ProductRetailer_1_0" />
         <AssociationConnector Association="PriceWatcherModel.FK_ProductRetailer_0_0" />

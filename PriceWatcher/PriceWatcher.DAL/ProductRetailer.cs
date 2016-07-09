@@ -24,6 +24,7 @@ namespace PriceWatcher.DAL
         public Nullable<long> ProductID { get; set; }
         public Nullable<long> RetailerID { get; set; }
         public string UrlTail { get; set; }
+        public string Regex { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Price> Prices { get; set; }

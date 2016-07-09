@@ -24,7 +24,7 @@ namespace PriceWatcher.DAL.Services
         public void UpdatePrices()
         {
             List<ProductDTO> products = ProductService.Instance.GetAll();
-
+            
             using (var context = new PriceWatcherEntities())
             {
                 foreach (var product in products)
@@ -33,7 +33,7 @@ namespace PriceWatcher.DAL.Services
                     {
                         //Retrieve value from web page.
                         string url = productRetailer.RetailerDTO.Url + productRetailer.UrlTail;
-                        double currentPrice = ScrapperService.Instance.GetValueFromPage(url);
+                        double currentPrice = ScrapperService.Instance.GetValueFromPage(url, productRetailer.Regex);
 
                         context.Prices.Add(new Price()
                         {
@@ -44,7 +44,7 @@ namespace PriceWatcher.DAL.Services
                     }
                 }
 
-                context.SaveChanges();
+                context.SaveChangesAsync();
             }
         }
     }

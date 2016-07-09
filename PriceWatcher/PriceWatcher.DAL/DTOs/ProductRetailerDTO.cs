@@ -11,5 +11,6 @@ namespace PriceWatcher.DAL.DTOs
         public long ID { get; set; }
         public RetailerDTO RetailerDTO { get; set; }
         public string UrlTail { get; set; }
+        public string Regex { get; set; }
     }
 }
