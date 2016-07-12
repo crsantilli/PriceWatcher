@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriceWatcher.DAL.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -25,7 +26,7 @@ namespace PriceWatcher.DAL.Services
             }
         }
 
-        public double GetValueFromPage(string url, string regex)
+        public double GetValueFromPage(string url, ProductRetailerDTO productRetailerDTO)
         {
             try
             {
@@ -38,11 +39,11 @@ namespace PriceWatcher.DAL.Services
                     html = sr.ReadToEnd();
                 }
 
-                Match priceRegex = Regex.Match(html, regex, RegexOptions.Singleline);
+                Match priceRegex = Regex.Match(html, productRetailerDTO.Regex, RegexOptions.Singleline);
                 if (priceRegex.Success)
                 {
                     var price = priceRegex.Groups[1].Value;
-                    return double.Parse(price.Substring(2, price.Length - 2), argentinaCulture);
+                    return double.Parse(price.Substring(productRetailerDTO.CharsToDeleteAtBeginning, price.Length - productRetailerDTO.CharsToDeleteAtBeginning), argentinaCulture);
                 }
             } catch (Exception) { }
 

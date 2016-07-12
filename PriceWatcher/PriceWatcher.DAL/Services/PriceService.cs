@@ -33,7 +33,7 @@ namespace PriceWatcher.DAL.Services
                     {
                         //Retrieve value from web page.
                         string url = productRetailer.RetailerDTO.Url + productRetailer.UrlTail;
-                        double currentPrice = ScrapperService.Instance.GetValueFromPage(url, productRetailer.Regex);
+                        double currentPrice = ScrapperService.Instance.GetValueFromPage(url, productRetailer);
 
                         context.Prices.Add(new Price()
                         {

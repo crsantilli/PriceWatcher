@@ -12,5 +12,6 @@ namespace PriceWatcher.DAL.DTOs
         public RetailerDTO RetailerDTO { get; set; }
         public string UrlTail { get; set; }
         public string Regex { get; set; }
+        public int CharsToDeleteAtBeginning { get; set; }
     }
 }

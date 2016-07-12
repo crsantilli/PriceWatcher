@@ -28,6 +28,7 @@ namespace PriceWatcher.DAL.Services
                 ID = entity.ID,
                 UrlTail = entity.UrlTail,
                 Regex = entity.Regex,
+                CharsToDeleteAtBeginning = (int)entity.CharsToDeleteAtBeginning,
                 RetailerDTO = RetailerService.Instance.ConvertToDTO(entity.Retailer)
             };
 

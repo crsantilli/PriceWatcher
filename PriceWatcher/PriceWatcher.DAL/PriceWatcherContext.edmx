@@ -30,6 +30,7 @@
           <Property Name="RetailerID" Type="integer" />
           <Property Name="UrlTail" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Regex" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="CharsToDeleteAtBeginning" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="Retailer">
           <Key>
@@ -142,6 +143,7 @@
           <Property Name="RetailerID" Type="Int64" />
           <Property Name="UrlTail" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Regex" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="CharsToDeleteAtBeginning" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Prices" Relationship="PriceWatcherModel.FK_Price_0_0" FromRole="ProductRetailer" ToRole="Price" />
           <NavigationProperty Name="Product" Relationship="PriceWatcherModel.FK_ProductRetailer_1_0" FromRole="ProductRetailer" ToRole="Product" />
           <NavigationProperty Name="Retailer" Relationship="PriceWatcherModel.FK_ProductRetailer_0_0" FromRole="ProductRetailer" ToRole="Retailer" />
@@ -218,6 +220,7 @@
           <EntitySetMapping Name="ProductRetailers">
             <EntityTypeMapping TypeName="PriceWatcherModel.ProductRetailer">
               <MappingFragment StoreEntitySet="ProductRetailer">
+                <ScalarProperty Name="CharsToDeleteAtBeginning" ColumnName="CharsToDeleteAtBeginning" />
                 <ScalarProperty Name="Regex" ColumnName="Regex" />
                 <ScalarProperty Name="UrlTail" ColumnName="UrlTail" />
                 <ScalarProperty Name="RetailerID" ColumnName="RetailerID" />
